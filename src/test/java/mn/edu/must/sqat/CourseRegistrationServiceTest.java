@@ -116,9 +116,12 @@ class CourseRegistrationServiceTest {
     }
 
     // A6 — assertThrows
+    // Хэсэг B-ийн мутант 3 ("|| courseId == null"-г устгах) эхний хувилбарыг амьд үлдээсэн:
+    // анх зөвхөн studentId = null-ийг шалгадаг байсан. Иймд хоёр аргумент тус бүрийн null-ийг нэмэв.
     @Test
-    void register_nullStudentId_throwsIllegalArgumentAndTouchesNoDependency() {
+    void register_nullStudentIdOrCourseId_throwsIllegalArgumentAndTouchesNoDependency() {
         assertThrows(IllegalArgumentException.class, () -> service.register(null, COURSE));
+        assertThrows(IllegalArgumentException.class, () -> service.register(STUDENT_ID, null));
 
         verifyNoInteractions(repository, emailSender);
     }
