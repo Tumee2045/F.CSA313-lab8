@@ -1,0 +1,8 @@
+target/
+.idea/
+.DS_Store
+.vscode/
+*.iml
+*.docx
+starter/
+__MACOSX/
